@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import Menu from '../Menu/Menu';
 import Recorder from '../Recorder/Recorder';
 import './App.css';
+import PeopleList from '../People/PeopleList';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <img src={logo} className="App-logo" alt="logo" />
         <Menu/>
         <Recorder/>
+        <PeopleList/>
       </header>
     </div>
   );
