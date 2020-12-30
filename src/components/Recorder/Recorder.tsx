@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { start,stop } from '../../actions';
 import { addZero } from '../../lib/utils';
-import { start, stop, selectDateStart } from '../../redux/recorder';
+import { selectDateStart } from '../../redux/recorder';
 
 const Recorder = () => {
     const dispatch = useDispatch();
