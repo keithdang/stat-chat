@@ -1,6 +1,7 @@
 export interface Person {
     id: number
     name: string
-    time: number
+    dateStarted: string
     isSpeaking: boolean
+    time: number
 }

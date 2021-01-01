@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { START, STOP, ADD_PERSON } from "./types";
+import { START, STOP, ADD_PERSON, START_TIMER } from "./types";
 import {ThunkAction} from 'redux-thunk'
 import { RootState } from "../redux/store";
 export type StartAction = Action<typeof START>;
@@ -10,6 +10,10 @@ export interface AddPersonAction extends Action<typeof ADD_PERSON> {
     payload: {name: string}
 }
 
+export interface StartTime extends Action<typeof START_TIMER> {
+    payload: {id: number, time:number}
+}
+
 export const start = (): StartAction => ({
     type: START,
 });
@@ -18,9 +22,6 @@ export const stop = (): StopAction => ({
     type: STOP,
 });
 
-// export const addPerson = (): AddPersonAction => {
-    
-// }
 export const addPerson = (name: string): ThunkAction<
     Promise<void>,
     RootState,
@@ -28,4 +29,13 @@ export const addPerson = (name: string): ThunkAction<
     AddPersonAction
 > => async dispatch =>{
     dispatch({type: ADD_PERSON, payload: {name: name}})
+}
+
+export const startTime = (id: number, time: number): ThunkAction<
+    Promise<void>,
+    RootState,
+    undefined,
+    StartTime
+> => async dispatch =>{
+    dispatch({type: START_TIMER, payload: {id: id, time: time}})
 }
