@@ -1,6 +1,6 @@
 import {RootState} from './store';
-import {ADD_PERSON, START_TIMER} from '../actions/types';
-import {AddPersonAction, StartTime} from '../actions'
+import {ADD_PERSON, EDIT_TIMER, MODES, START_TIMER} from '../actions/types';
+import {AddPersonAction, EditTimeAction, StartTime} from '../actions'
 import { Person } from '../interfaces/Person';
 import { convertToSecondsFromDateStarted } from '../lib/utils';
 
@@ -17,7 +17,10 @@ const createPerson = (name: string, num: number): Person => {
     }
 }
 
-const peopleReducer = (state: Person[] = [], action: AddPersonAction | StartTime) => {
+const peopleReducer = (
+    state: Person[] = [], 
+    action: EditTimeAction | AddPersonAction | StartTime 
+    ) => {
     switch (action.type){
         case ADD_PERSON:
             return [...state, createPerson(action.payload.name, state.length+1)];
@@ -41,9 +44,19 @@ const peopleReducer = (state: Person[] = [], action: AddPersonAction | StartTime
                   }
             })
             return [...state]
+        case EDIT_TIMER:
+            state.forEach((person) => {
+                if (person.id === action.payload.id) {
+                  person.time = action.payload.time;
+                }
+              });
+              state.sort(timeSort);
+              return [...state];
         default:
             return state
     }
 }
-
+function timeSort(p1: Person, p2: Person) {
+    return p2.time - p1.time;
+  }
 export default peopleReducer
