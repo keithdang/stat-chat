@@ -1,6 +1,6 @@
 import {RootState} from './store';
-import {ADD_PERSON, EDIT_TIMER, MODES, START_TIMER} from '../actions/types';
-import {AddPersonAction, EditTimeAction, StartTime} from '../actions'
+import {ADD_PERSON, ADD_TIME, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME, MODES, START_TIMER} from '../actions/types';
+import {AddPersonAction, AddTimeAction, DeletePersonAction, EditNameAction, EditTimeAction, MinusTimeAction, StartTime} from '../actions'
 import { Person } from '../interfaces/Person';
 import { convertToSecondsFromDateStarted } from '../lib/utils';
 
@@ -19,7 +19,7 @@ const createPerson = (name: string, num: number): Person => {
 
 const peopleReducer = (
     state: Person[] = [], 
-    action: EditTimeAction | AddPersonAction | StartTime 
+    action: EditTimeAction | AddPersonAction | StartTime | AddTimeAction | MinusTimeAction | EditNameAction | DeletePersonAction
     ) => {
     switch (action.type){
         case ADD_PERSON:
@@ -52,6 +52,32 @@ const peopleReducer = (
               });
               state.sort(timeSort);
               return [...state];
+        case EDIT_NAME:
+            state.forEach((person) => {
+                if (person.id === action.payload.id) {
+                    person.name = action.payload.name;
+                }
+                });
+                state.sort(timeSort);
+                return [...state];
+        case ADD_TIME:
+            state.forEach((person) => {
+                if (person.id === action.payload.id) {
+                  person.time += action.payload.time;
+                }
+              });
+              state.sort(timeSort);
+              return [...state];
+        case MINUS_TIME:
+            state.forEach((person) => {
+                if (person.id === action.payload.id) {
+                    person.time -= action.payload.time;
+                }
+                });
+                state.sort(timeSort);
+                return [...state];
+        case DELETE_PERSON:
+            return [...state.filter((person) => person.id !== action.payload.id)];
         default:
             return state
     }

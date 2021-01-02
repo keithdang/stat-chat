@@ -1,9 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { ThunkAction } from 'redux-thunk';
-import { RootState } from '../redux/store';
-import { addPerson, AddPersonAction } from './../actions'
-import {MODES} from './../actions/types'
+import { useDispatch } from 'react-redux';
+import {ADD_PERSON, EDIT_NAME, MODES} from './../actions/types'
 
 interface Props {
     id?: number
@@ -20,9 +17,12 @@ const EditForm: React.FC<Props> = ({mode, id, buttonFunc}) => {
         onSubmit={(e) => {
           e.preventDefault();
           if(input != null){
-            if(mode == MODES.ADD_NAME){
+            if(mode == ADD_PERSON){
                 dispatch(buttonFunc(input.value))
-            }else{
+            }else if(mode == EDIT_NAME){
+                dispatch(buttonFunc(id, input.value))
+            }
+            else{
                 dispatch(buttonFunc(id, input.value))
             }
             input.value = "";
