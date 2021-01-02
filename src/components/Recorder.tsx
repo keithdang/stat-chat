@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { start,startTime,stop } from '../actions';
-import { addZero } from '../lib/utils';
+import { addZero, convertToSecondsFromDateStarted } from '../lib/utils';
 import { selectDateStart } from '../redux/recorder';
 import TimeDisplay from './TimeDisplay';
 
@@ -17,8 +17,7 @@ const Recorder: React.FC<Props>  = ({id, dateStarted, isSpeaking, time}) => {
     const dispatch = useDispatch();
     let interval = useRef<number>(0);
     const [, setCount] = useState<number>(0);
-    let seconds = dateStarted ? Math.floor((Date.now() - new Date(dateStarted).getTime()) / 1000): 0;
-    seconds += time;
+    let seconds = convertToSecondsFromDateStarted(dateStarted, time);
 
     const handleClick = () => {
         dispatch(startTime(id, seconds))

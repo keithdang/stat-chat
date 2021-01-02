@@ -2,6 +2,7 @@ import {RootState} from './store';
 import {ADD_PERSON, START_TIMER} from '../actions/types';
 import {AddPersonAction, StartTime} from '../actions'
 import { Person } from '../interfaces/Person';
+import { convertToSecondsFromDateStarted } from '../lib/utils';
 
 export const selectPeople = (rootState: RootState) =>
     rootState.people;
@@ -27,15 +28,14 @@ const peopleReducer = (state: Person[] = [], action: AddPersonAction | StartTime
                         person.isSpeaking = false;
                         person.time = action.payload.time;
                         person.dateStarted=''
-                        // person.speakingTime = parseInt(action.time);
                       } else {
                         person.dateStarted=new Date().toISOString()
                         person.isSpeaking = true;
                       }
                 }else {
-                    // if (person.isSpeaking) {
-                    //   person.speakingTime = action.time;
-                    // }
+                    if (person.isSpeaking) {
+                      person.time = convertToSecondsFromDateStarted(person.dateStarted, person.time);
+                    }
                     person.dateStarted=''
                     person.isSpeaking = false;
                   }
