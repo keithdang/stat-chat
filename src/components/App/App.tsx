@@ -7,11 +7,11 @@ import PeopleList from '../People/PeopleList';
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Menu/>
+      <Menu/>
+      {/* <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />    
         <PeopleList/>
-      </header>
+      </header> */}
     </div>
   );
 }

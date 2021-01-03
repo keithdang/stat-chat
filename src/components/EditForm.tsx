@@ -23,7 +23,7 @@ const EditForm: React.FC<Props> = ({mode, id, buttonFunc}) => {
                 dispatch(buttonFunc(id, input.value))
             }
             else{
-                dispatch(buttonFunc(id, input.value))
+                dispatch(buttonFunc(id, parseInt(input.value)))
             }
             input.value = "";
           }

@@ -1,11 +1,68 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addPerson } from '../../actions'
-import { ADD_PERSON, MODES } from '../../actions/types';
+import { ADD_PERSON, ADD_TIME, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME, MODES } from '../../actions/types';
 import EditForm from '../EditForm';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+  } from "react-router-dom";
+  import { Navbar, NavbarBrand, NavDropdown, Nav, Button } from "react-bootstrap";
+import PeopleList from '../People/PeopleList';
+import './Navigation-bar.css';
+import logo from '../App/logo.svg';
+
 
 const Menu: React.FC = () => {
-    return <EditForm mode={ADD_PERSON} buttonFunc={addPerson}/>
+    const AuthRoute = (props:any) => {
+        const { component, path } = props;
+        return <Route path={path} component={component} />;
+      };
+
+    return (
+        <Router>
+            <div className="navbar">
+                <Link to="/">Home</Link>
+                <div className="dropdown">
+                    <button className="dropbtn">Edit 
+                    <i className="fa fa-caret-down"></i>
+                    </button>
+                    <div className="dropdown-content">
+                    <Link to="/addtime">Add Time</Link>
+                    <Link to="/minustime">Minus Time</Link>
+                    <Link to="/edittime">Edit Time</Link>
+                    <Link to="/editname">Edit Name</Link>
+                    <Link to="/deleteperson">Delete Person</Link>
+                    </div>
+                </div> 
+            </div>
+            <Switch>
+                {/* <AuthRoute path="/minustime" component={PeopleList} /> */}
+                <Route path="/addtime">
+                    <PeopleList mode={ADD_TIME}/>
+                </Route>
+                <Route path="/minustime">
+                    <PeopleList mode={MINUS_TIME}/>
+                </Route>
+                <Route path="/edittime">
+                    <PeopleList mode={EDIT_TIMER}/>
+                </Route>
+                <Route path="/editname">
+                    <PeopleList mode={EDIT_NAME}/>
+                </Route>
+                <Route path="/deleteperson">
+                    <PeopleList mode={DELETE_PERSON}/>
+                </Route>
+                <Route path="/">
+                    <img src={logo} className="App-logo" alt="logo" />   
+                    <EditForm mode={ADD_PERSON} buttonFunc={addPerson}/>
+                    <PeopleList />
+                </Route>
+            </Switch>
+        </Router>
+    )
 }
 
 export default Menu;

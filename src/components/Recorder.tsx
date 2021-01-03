@@ -9,11 +9,12 @@ import TimeDisplay from './TimeDisplay';
 interface Props {
     id: number
     dateStarted: string
-    isSpeaking: boolean,
+    isSpeaking: boolean
     time: number
+    mode?: string
 }
 
-const Recorder: React.FC<Props>  = ({id, dateStarted, isSpeaking, time}) => {
+const Recorder: React.FC<Props>  = ({id, dateStarted, isSpeaking, time, mode}) => {
     const dispatch = useDispatch();
     let interval = useRef<number>(0);
     const [, setCount] = useState<number>(0);
@@ -38,9 +39,9 @@ const Recorder: React.FC<Props>  = ({id, dateStarted, isSpeaking, time}) => {
 
     return (
         <div style={{display:'flex'}}>
-            <button onClick={handleClick}>
+            {!mode && <button onClick={handleClick}>
                 Start
-            </button>
+            </button>}
             <TimeDisplay seconds={seconds}/>
         </div>
     )
