@@ -1,29 +1,30 @@
 import React from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addTime, deletePerson, editName, editTime, minusTime} from '../../actions'
-import { ADD_TIME, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME } from '../../actions/types'
+import { ADD_TIME, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME, MODES } from '../../actions/types'
 import {Person as PersonInt} from '../../interfaces/Person'
+import {selectModeState} from '../../redux/mode';
 import EditForm from '../EditForm'
 import Recorder from '../Recorder'
 
 interface Props {
     person: PersonInt
-    mode?: string
 }
 
-const Person: React.FC<Props> = ({person, mode}) => {
+const Person: React.FC<Props> = ({person}) => {
     const dispatch = useDispatch();
+    const mode = useSelector(selectModeState);
     const editForm = () => {
         switch (mode){
-            case EDIT_NAME:
+            case MODES.EDIT_NAME:
                 return <EditForm id={person.id} mode={EDIT_NAME} buttonFunc={editName}/>
-            case ADD_TIME:
+            case MODES.ADD_TIME:
                 return <EditForm id={person.id} mode={ADD_TIME} buttonFunc={addTime}/>
-            case MINUS_TIME:
+            case MODES.MINUS_TIME:
                 return <EditForm id={person.id} mode={MINUS_TIME} buttonFunc={minusTime}/>
-            case EDIT_TIMER:
+            case MODES.EDIT_TIME:
                 return <EditForm id={person.id} mode={EDIT_TIMER} buttonFunc={editTime}/>
-            case DELETE_PERSON:
+            case MODES.DELETE_PERSON:
                 return <button onClick={()=>dispatch(deletePerson(person.id))}>-</button> 
         }
     }
@@ -32,7 +33,7 @@ const Person: React.FC<Props> = ({person, mode}) => {
             <div style={{display:'flex'}}>
                 <span>{person.name}:</span>
                 <span style={{paddingLeft:'5px'}}></span>
-                <Recorder id={person.id} dateStarted={person.dateStarted} isSpeaking={person.isSpeaking} time={person.time} mode={mode}/>
+                <Recorder id={person.id} dateStarted={person.dateStarted} isSpeaking={person.isSpeaking} time={person.time} />
                 {editForm()}
             </div>
         </li>

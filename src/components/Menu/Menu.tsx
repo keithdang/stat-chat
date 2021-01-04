@@ -41,19 +41,19 @@ const Menu: React.FC = () => {
             <Switch>
                 {/* <AuthRoute path="/minustime" component={PeopleList} /> */}
                 <Route path="/addtime">
-                    <PeopleList mode={ADD_TIME}/>
+                    <PeopleList mode={MODES.ADD_TIME}/>
                 </Route>
                 <Route path="/minustime">
-                    <PeopleList mode={MINUS_TIME}/>
+                    <PeopleList mode={MODES.MINUS_TIME}/>
                 </Route>
                 <Route path="/edittime">
-                    <PeopleList mode={EDIT_TIMER}/>
+                    <PeopleList mode={MODES.EDIT_TIME}/>
                 </Route>
                 <Route path="/editname">
-                    <PeopleList mode={EDIT_NAME}/>
+                    <PeopleList mode={MODES.EDIT_NAME}/>
                 </Route>
                 <Route path="/deleteperson">
-                    <PeopleList mode={DELETE_PERSON}/>
+                    <PeopleList mode={MODES.DELETE_PERSON}/>
                 </Route>
                 <Route path="/">
                     <img src={logo} className="App-logo" alt="logo" />   

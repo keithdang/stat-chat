@@ -2,10 +2,12 @@ import { applyMiddleware, combineReducers, createStore, compose } from 'redux';
 import thunk from 'redux-thunk';
 import recorderReducer from './recorder';
 import peopleReducer from './people';
+import modeReducer from './mode';
 
 const rootReducer = combineReducers({
   recorder: recorderReducer,
-  people: peopleReducer
+  people: peopleReducer,
+  mode: modeReducer
 });
 
 export type RootState = ReturnType<typeof rootReducer>;

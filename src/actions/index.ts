@@ -4,6 +4,12 @@ import {ThunkAction} from 'redux-thunk'
 import { RootState } from "../redux/store";
 export type StartAction = Action<typeof START>;
 export type StopAction = Action<typeof STOP>;
+export type ModeDefaultAction = Action<typeof MODES.DEFAULT>;
+export type ModeAddTimeAction = Action<typeof MODES.ADD_TIME>;
+export type ModeMinusTimeAction = Action<typeof MODES.MINUS_TIME>;
+export type ModeEditTimeAction = Action<typeof MODES.EDIT_TIME>;
+export type ModeEditNameAction = Action<typeof MODES.EDIT_NAME>;
+export type ModeDeletePersonAction = Action<typeof MODES.DELETE_PERSON>;
 
 export interface EditNameAction extends Action<typeof EDIT_NAME> {
     payload: {id: number, name: string}
@@ -39,6 +45,30 @@ export const start = (): StartAction => ({
   
 export const stop = (): StopAction => ({
     type: STOP,
+});
+
+export const modeDefault = (): ModeDefaultAction => ({
+    type: MODES.DEFAULT,
+});
+
+export const modeAddTime = (): ModeAddTimeAction => ({
+    type: MODES.ADD_TIME,
+});
+
+export const modeMinusTime = (): ModeMinusTimeAction => ({
+    type: MODES.MINUS_TIME,
+});
+
+export const modeEditTime = (): ModeEditTimeAction => ({
+    type: MODES.EDIT_TIME,
+});
+
+export const modeEditName = (): ModeEditNameAction => ({
+    type: MODES.EDIT_NAME,
+});
+
+export const modeDeletePerson = (): ModeDeletePersonAction => ({
+    type: MODES.DELETE_PERSON,
 });
 
 export const addPerson = (name: string): ThunkAction<
