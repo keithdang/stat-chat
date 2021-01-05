@@ -4,4 +4,5 @@ export interface Person {
     dateStarted: string
     isSpeaking: boolean
     time: number
+    color?: string
 }

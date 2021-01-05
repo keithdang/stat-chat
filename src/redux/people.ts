@@ -13,7 +13,8 @@ const createPerson = (name: string, num: number): Person => {
         name: name,
         dateStarted: '',
         isSpeaking: false,
-        time: 0
+        time: 0,
+        color: randomRbga(),
     }
 }
 
@@ -82,6 +83,22 @@ const peopleReducer = (
             return state
     }
 }
+function randomRbga() {
+    var o = Math.round,
+      r = Math.random,
+      s = 255;
+    return (
+      "rgba(" +
+      o(r() * s) +
+      "," +
+      o(r() * s) +
+      "," +
+      o(r() * s) +
+      "," +
+      r().toFixed(1) +
+      ")"
+    );
+  }
 function timeSort(p1: Person, p2: Person) {
     return p2.time - p1.time;
   }

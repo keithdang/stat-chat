@@ -4,6 +4,7 @@ import {selectPeople} from '../../redux/people';
 import { useDispatch, useSelector } from 'react-redux';
 import { MODES } from '../../actions/types';
 import { modeAddTime, modeDefault, modeDeletePerson, modeEditName, modeEditTime, modeMinusTime } from '../../actions';
+import Results from '../Results';
 
 interface Props {
     mode?: string
@@ -38,12 +39,13 @@ const PeopleList: React.FC<Props>= ({mode}) => {
     DispatchMode(mode);
     const people = useSelector(selectPeople);
     return (
-        <div>
+        <div style={{display:'flex'}}>
             <ul>
                 {people.map((person)=>(
                     <Person person={person}/>
                 ))}
             </ul>
+            <Results/>
         </div>
     )
 }
