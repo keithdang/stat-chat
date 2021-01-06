@@ -1,4 +1,5 @@
 import React from 'react';
+import { IconType } from 'react-icons/lib';
 import { useDispatch } from 'react-redux';
 import {ADD_PERSON, EDIT_NAME, MODES} from './../actions/types'
 
@@ -6,9 +7,10 @@ interface Props {
     id?: number
     mode: string
     buttonFunc: any
+    icon: any
 }
 
-const EditForm: React.FC<Props> = ({mode, id, buttonFunc}) => {
+const EditForm: React.FC<Props> = ({mode, id, buttonFunc, icon}) => {
     const dispatch = useDispatch();
     
     let input: HTMLInputElement | null;
@@ -28,7 +30,7 @@ const EditForm: React.FC<Props> = ({mode, id, buttonFunc}) => {
           }
         }}
         >
-            <button>Add</button>
+            <button>{icon}</button>
             <input ref={(node) => (input = node)}/>
         </form>
     )

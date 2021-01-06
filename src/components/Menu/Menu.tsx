@@ -8,6 +8,9 @@ import {
     Route,
     Link,
   } from "react-router-dom";
+  import {
+    FaPlusCircle
+  } from 'react-icons/fa';
 import PeopleList from '../People/PeopleList';
 import './Navigation-bar.css';
 import logo from '../App/logo.svg';
@@ -55,7 +58,7 @@ const Menu: React.FC = () => {
                 </Route>
                 <Route path="/">
                     <img src={logo} className="App-logo" alt="logo" />   
-                    <EditForm mode={ADD_PERSON} buttonFunc={addPerson}/>
+                    <EditForm mode={ADD_PERSON} buttonFunc={addPerson} icon={<FaPlusCircle/>}/>
                     <PeopleList />
                 </Route>
             </Switch>
