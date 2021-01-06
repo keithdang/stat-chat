@@ -1,7 +1,6 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 import { addPerson } from '../../actions'
-import { ADD_PERSON, ADD_TIME, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME, MODES } from '../../actions/types';
+import { ADD_PERSON, MODES } from '../../actions/types';
 import EditForm from '../EditForm';
 import {
     BrowserRouter as Router,
@@ -9,7 +8,6 @@ import {
     Route,
     Link,
   } from "react-router-dom";
-  import { Navbar, NavbarBrand, NavDropdown, Nav, Button } from "react-bootstrap";
 import PeopleList from '../People/PeopleList';
 import './Navigation-bar.css';
 import logo from '../App/logo.svg';

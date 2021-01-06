@@ -53,10 +53,7 @@ const Results: React.FC = () => {
     const namesList = useSelector(selectPeople);
     const mode = useSelector(selectModeState);
     useEffect(() => {
-        console.log(namesList)
-        return () => {
-            AssignDataPoint(namesList)
-        };
+        AssignDataPoint(namesList)
     }, [namesList, mode]);
 
     

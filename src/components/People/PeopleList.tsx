@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { MODES } from '../../actions/types';
 import { modeAddTime, modeDefault, modeDeletePerson, modeEditName, modeEditTime, modeMinusTime } from '../../actions';
 import Results from '../Results';
+import { useEffect, useState } from 'react';
 
 interface Props {
     mode?: string
@@ -35,8 +36,10 @@ const DispatchMode = (mode: string | undefined) => {
     }
 }
 
+
 const PeopleList: React.FC<Props>= ({mode}) => {
     DispatchMode(mode);
+    
     const people = useSelector(selectPeople);
     return (
         <div style={{display:'flex'}}>
@@ -45,7 +48,7 @@ const PeopleList: React.FC<Props>= ({mode}) => {
                     <Person person={person}/>
                 ))}
             </ul>
-            <Results/>
+            {people && <Results/>}
         </div>
     )
 }
