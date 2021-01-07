@@ -6,9 +6,10 @@ import {ADD_PERSON, EDIT_NAME, MODES} from './../actions/types'
 interface Props {
     id?: number
     mode: string
-    buttonFunc: any
-    icon: any
+    buttonFunc(x: any, y?: any): void
+    icon: JSX.Element | string
 }
+
 
 const EditForm: React.FC<Props> = ({mode, id, buttonFunc, icon}) => {
     const dispatch = useDispatch();
@@ -29,9 +30,10 @@ const EditForm: React.FC<Props> = ({mode, id, buttonFunc, icon}) => {
             input.value = "";
           }
         }}
+        style={{marginBottom:10}}
         >
-            <button>{icon}</button>
-            <input ref={(node) => (input = node)}/>
+            <button style={{marginRight:5, paddingTop:5}}>{icon}</button>
+            <input style={{paddingTop:5}} ref={(node) => (input = node)}/>
         </form>
     )
 }

@@ -59,7 +59,7 @@ const Results: React.FC = () => {
     
     return (
       <div>
-        <header>Results</header>
+        {/* <h4 style={{marginBottom:0}}>Talk Times</h4> */}
         {peopleChartData && renderChart()}
       </div>
     );

@@ -9,7 +9,6 @@ import { useEffect, useState } from 'react';
 
 interface Props {
     mode?: string
-    sup?: boolean
 }
 
 const DispatchMode = (mode: string | undefined) => {
@@ -43,11 +42,14 @@ const PeopleList: React.FC<Props>= ({mode}) => {
     const people = useSelector(selectPeople);
     return (
         <div style={{display:'flex'}}>
-            <ul>
-                {people.map((person)=>(
-                    <Person person={person}/>
-                ))}
-            </ul>
+            <div>
+                <h4>{mode || 'Names'}</h4>
+                <ul style={{listStyleType:'none', padding: 0}}>
+                    {people.map((person)=>(
+                        <Person person={person}/>
+                    ))}
+                </ul>
+            </div>
             {people && <Results/>}
         </div>
     )

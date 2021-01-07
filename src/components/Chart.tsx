@@ -1,5 +1,12 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
+
+interface Props {
+    chartData: string
+    title: string
+    chartType: string
+}
+
 export default (props:any) => {
   return (
     <div>
@@ -15,7 +22,7 @@ export default (props:any) => {
             responsive: false,
             maintainAspectRatio: false,
             legend: {
-              position: "right",
+              position: "bottom",
               labels: {
                 boxWidth: 50,
                 fontSize: 20,

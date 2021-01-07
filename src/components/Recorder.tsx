@@ -5,16 +5,13 @@ import { MODES } from '../actions/types';
 import { addZero, convertToSecondsFromDateStarted } from '../lib/utils';
 import {selectModeState} from './../redux/mode';
 import TimeDisplay from './TimeDisplay';
+import {Person} from '../interfaces/Person'
 
 //TODO: OMIT INTERFACE
-interface Props {
-    id: number
-    dateStarted: string
-    isSpeaking: boolean
-    time: number
-}
 
-const Recorder: React.FC<Props>  = ({id, dateStarted, isSpeaking, time}) => {
+type RecPerson = Omit<Person, "name" | "color">
+
+const Recorder: React.FC<RecPerson>  = ({id, dateStarted, isSpeaking, time}) => {
     const dispatch = useDispatch();
     const mode = useSelector(selectModeState);
     let interval = useRef<number>(0);
@@ -39,8 +36,9 @@ const Recorder: React.FC<Props>  = ({id, dateStarted, isSpeaking, time}) => {
       }, []);
 
     return (
-        <div style={{display:'flex'}}>
-            {mode===MODES.DEFAULT && <button onClick={handleClick}>
+        <div style={{display:'flex', marginBottom:10, marginRight:10}} >
+            {mode===MODES.DEFAULT && 
+            <button onClick={handleClick}>
                 Start
             </button>}
             <TimeDisplay seconds={seconds}/>

@@ -33,13 +33,13 @@ const Person: React.FC<Props> = ({person}) => {
             case MODES.EDIT_TIME:
                 return <EditForm id={person.id} mode={EDIT_TIMER} buttonFunc={editTime} icon={<FaArrowCircleLeft/>}/>
             case MODES.DELETE_PERSON:
-                return <button onClick={()=>dispatch(deletePerson(person.id))}><FaTrashAlt/></button> 
+                return <button style={{height:'2.2em'}} onClick={()=>dispatch(deletePerson(person.id))}><FaTrashAlt/></button> 
         }
     }
     return (
         <li>
             <div style={{display:'flex'}}>
-                <span>{person.name}:</span>
+                <span style={{minWidth:70}}>{person.name}:</span>
                 <span style={{paddingLeft:'5px'}}></span>
                 <Recorder id={person.id} dateStarted={person.dateStarted} isSpeaking={person.isSpeaking} time={person.time} />
                 {editForm()}

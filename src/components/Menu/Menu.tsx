@@ -1,19 +1,14 @@
 import React from 'react';
-import { addPerson } from '../../actions'
-import { ADD_PERSON, MODES } from '../../actions/types';
-import EditForm from '../EditForm';
+import { MODES } from '../../actions/types';
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     Link,
   } from "react-router-dom";
-  import {
-    FaPlusCircle
-  } from 'react-icons/fa';
 import PeopleList from '../People/PeopleList';
 import './Navigation-bar.css';
-import logo from '../App/logo.svg';
+import Home from '../Home';
 
 
 const Menu: React.FC = () => {
@@ -57,9 +52,10 @@ const Menu: React.FC = () => {
                     <PeopleList mode={MODES.DELETE_PERSON}/>
                 </Route>
                 <Route path="/">
-                    <img src={logo} className="App-logo" alt="logo" />   
-                    <EditForm mode={ADD_PERSON} buttonFunc={addPerson} icon={<FaPlusCircle/>}/>
-                    <PeopleList />
+                    <Home/>
+                    {/* <img src={logo} className="App-logo" alt="logo" />   
+                    <EditForm mode={ADD_PERSON} buttonFunc={addPerson} icon={'Add Name'}/>
+                    <PeopleList /> */}
                 </Route>
             </Switch>
         </Router>

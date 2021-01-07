@@ -11,11 +11,11 @@ export const DELETE_PERSON = 'person/delete';
 
 export const MODES = {
     DEFAULT: "default",
-    EDIT_TIME: "edit_time",
-    ADD_TIME: "mode_add_time",
-    CHANGE_COLOR: "mode_change_color",
-    MINUS_TIME: "mode_minus_time",
-    ADD_NAME: "mode_add_name",
-    EDIT_NAME: "mode_edit_name",
-    DELETE_PERSON: "mode_delete_person",
+    EDIT_TIME: "Edit Time",
+    ADD_TIME: "Add Time",
+    CHANGE_COLOR: "Change Color",
+    MINUS_TIME: "Minus Time",
+    ADD_NAME: "Add Name",
+    EDIT_NAME: "Edit Name",
+    DELETE_PERSON: "Delete",
   };

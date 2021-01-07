@@ -13,7 +13,7 @@ const TimeDisplay: React.FC<Props> = ({seconds}) => {
     seconds -= minutes * 60;
 
     return (
-        <div>
+        <div style={{marginLeft:10}}>
             {addZero(hours)}:{addZero(minutes)}:{addZero(seconds)}
         </div>
     )

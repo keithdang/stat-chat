@@ -10,6 +10,7 @@
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
+  min-width: 140px;
 }
 
 .dropdown {
@@ -26,6 +27,7 @@
   background-color: inherit;
   font-family: inherit;
   margin: 0;
+  min-width: 172px;
 }
 
 .navbar a:hover,
