@@ -1,8 +1,8 @@
 import {RootState} from './store';
-import {ADD_PERSON, ADD_TIME, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME, MODES, START_TIMER} from '../actions/types';
-import {AddPersonAction, AddTimeAction, DeletePersonAction, EditNameAction, EditTimeAction, MinusTimeAction, StartTime} from '../actions'
+import {ADD_PERSON, ADD_TIME, CHANGE_COLOR, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME, MODES, START_TIMER} from '../actions/types';
+import {AddPersonAction, AddTimeAction, ChangeColorAction, DeletePersonAction, EditNameAction, EditTimeAction, MinusTimeAction, StartTime} from '../actions'
 import { Person } from '../interfaces/Person';
-import { convertToSecondsFromDateStarted } from '../lib/utils';
+import { convertToSecondsFromDateStarted, randomRbga, timeSort } from '../lib/utils';
 
 export const selectPeople = (rootState: RootState) =>
     rootState.people;
@@ -20,7 +20,8 @@ const createPerson = (name: string, num: number): Person => {
 
 const peopleReducer = (
     state: Person[] = [], 
-    action: EditTimeAction | AddPersonAction | StartTime | AddTimeAction | MinusTimeAction | EditNameAction | DeletePersonAction
+    action: EditTimeAction | AddPersonAction | StartTime | AddTimeAction 
+    | MinusTimeAction | EditNameAction | DeletePersonAction | ChangeColorAction
     ) => {
     switch (action.type){
         case ADD_PERSON:
@@ -45,6 +46,13 @@ const peopleReducer = (
                   }
             })
             return [...state]
+        case CHANGE_COLOR:
+            state.forEach((person) => {
+                if (person.id === action.payload.id) {
+                    person.color = randomRbga();
+                }
+                });
+                return [...state];
         case EDIT_TIMER:
             state.forEach((person) => {
                 if (person.id === action.payload.id) {
@@ -83,23 +91,5 @@ const peopleReducer = (
             return state
     }
 }
-function randomRbga() {
-    var o = Math.round,
-      r = Math.random,
-      s = 255;
-    return (
-      "rgba(" +
-      o(r() * s) +
-      "," +
-      o(r() * s) +
-      "," +
-      o(r() * s) +
-      "," +
-      r().toFixed(1) +
-      ")"
-    );
-  }
-function timeSort(p1: Person, p2: Person) {
-    return p2.time - p1.time;
-  }
+
 export default peopleReducer

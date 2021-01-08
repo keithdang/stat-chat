@@ -31,6 +31,7 @@ const Menu: React.FC = () => {
                     <Link to="/edittime">Edit Time</Link>
                     <Link to="/editname">Edit Name</Link>
                     <Link to="/deleteperson">Delete Person</Link>
+                    <Link to="/changecolor">Change Color</Link>
                     </div>
                 </div> 
             </div>
@@ -50,6 +51,9 @@ const Menu: React.FC = () => {
                 </Route>
                 <Route path="/deleteperson">
                     <PeopleList mode={MODES.DELETE_PERSON}/>
+                </Route>
+                <Route path="/changecolor">
+                    <PeopleList mode={MODES.CHANGE_COLOR}/>
                 </Route>
                 <Route path="/">
                     <Home/>

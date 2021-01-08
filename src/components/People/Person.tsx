@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { addTime, deletePerson, editName, editTime, minusTime} from '../../actions'
+import { addTime, changeColor, deletePerson, editName, editTime, minusTime} from '../../actions'
 import { ADD_TIME, DELETE_PERSON, EDIT_NAME, EDIT_TIMER, MINUS_TIME, MODES } from '../../actions/types'
 import {
     FaArrowCircleLeft,
@@ -32,6 +32,8 @@ const Person: React.FC<Props> = ({person}) => {
                 return <EditForm id={person.id} mode={MINUS_TIME} buttonFunc={minusTime} icon={<FaMinusCircle/>}/>
             case MODES.EDIT_TIME:
                 return <EditForm id={person.id} mode={EDIT_TIMER} buttonFunc={editTime} icon={<FaArrowCircleLeft/>}/>
+            case MODES.CHANGE_COLOR:
+                return <button style={{height:'2.2em'}} onClick={()=>dispatch(changeColor(person.id))}><FaPaintBrush/></button> 
             case MODES.DELETE_PERSON:
                 return <button style={{height:'2.2em'}} onClick={()=>dispatch(deletePerson(person.id))}><FaTrashAlt/></button> 
         }
@@ -39,7 +41,7 @@ const Person: React.FC<Props> = ({person}) => {
     return (
         <li>
             <div style={{display:'flex'}}>
-                <span style={{minWidth:70}}>{person.name}:</span>
+                <span style={person.isSpeaking ? {minWidth:70, fontWeight:"bold"} : {minWidth:70}}>{person.name}:</span>
                 <span style={{paddingLeft:'5px'}}></span>
                 <Recorder id={person.id} dateStarted={person.dateStarted} isSpeaking={person.isSpeaking} time={person.time} />
                 {editForm()}

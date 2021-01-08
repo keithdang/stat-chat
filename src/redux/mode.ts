@@ -28,6 +28,8 @@ const modeReducer = (
             return {mode: MODES.EDIT_NAME};
         case MODES.DELETE_PERSON:
             return {mode: MODES.DELETE_PERSON};
+        case MODES.CHANGE_COLOR:
+            return {mode: MODES.CHANGE_COLOR};
         default:
             return initialState;
     }

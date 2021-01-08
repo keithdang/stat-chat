@@ -7,8 +7,6 @@ import {selectModeState} from './../redux/mode';
 import TimeDisplay from './TimeDisplay';
 import {Person} from '../interfaces/Person'
 
-//TODO: OMIT INTERFACE
-
 type RecPerson = Omit<Person, "name" | "color">
 
 const Recorder: React.FC<RecPerson>  = ({id, dateStarted, isSpeaking, time}) => {
@@ -39,7 +37,7 @@ const Recorder: React.FC<RecPerson>  = ({id, dateStarted, isSpeaking, time}) => 
         <div style={{display:'flex', marginBottom:10, marginRight:10}} >
             {mode===MODES.DEFAULT && 
             <button onClick={handleClick}>
-                Start
+                {isSpeaking ? 'Stop' : 'Start'}
             </button>}
             <TimeDisplay seconds={seconds}/>
         </div>

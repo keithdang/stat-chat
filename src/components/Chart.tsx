@@ -14,11 +14,11 @@ export default (props:any) => {
         <Pie
           data={props.chartData}
           options={{
-            title: {
-              display: true,
-              text: props.title,
-              fontSize: 25,
-            },
+            // title: {
+            //   display: true,
+            //   text: props.title,
+            //   fontSize: 25,
+            // },
             responsive: false,
             maintainAspectRatio: false,
             legend: {
@@ -29,8 +29,8 @@ export default (props:any) => {
               },
             },
           }}
-          width={500}
-          height={500}
+          width={400}
+          height={400}
         />
       )}
     </div>

@@ -1,5 +1,5 @@
 import { Action } from "redux";
-import { START, STOP, ADD_PERSON, START_TIMER, MODES, EDIT_TIMER, ADD_TIME, MINUS_TIME, EDIT_NAME, DELETE_PERSON } from "./types";
+import { START, STOP, ADD_PERSON, START_TIMER, MODES, EDIT_TIMER, ADD_TIME, MINUS_TIME, EDIT_NAME, DELETE_PERSON, CHANGE_COLOR } from "./types";
 import {ThunkAction} from 'redux-thunk'
 import { RootState } from "../redux/store";
 export type StartAction = Action<typeof START>;
@@ -10,12 +10,17 @@ export type ModeMinusTimeAction = Action<typeof MODES.MINUS_TIME>;
 export type ModeEditTimeAction = Action<typeof MODES.EDIT_TIME>;
 export type ModeEditNameAction = Action<typeof MODES.EDIT_NAME>;
 export type ModeDeletePersonAction = Action<typeof MODES.DELETE_PERSON>;
+export type ModeChangeColorAction = Action<typeof MODES.CHANGE_COLOR>;
 
 export interface EditNameAction extends Action<typeof EDIT_NAME> {
     payload: {id: number, name: string}
 }
 
 export interface DeletePersonAction extends Action<typeof DELETE_PERSON> {
+    payload: {id: number}
+}
+
+export interface ChangeColorAction extends Action<typeof CHANGE_COLOR> {
     payload: {id: number}
 }
 
@@ -51,6 +56,10 @@ export const modeDefault = (): ModeDefaultAction => ({
     type: MODES.DEFAULT,
 });
 
+export const modeChangeColor = (): ModeChangeColorAction => ({
+    type: MODES.CHANGE_COLOR,
+});
+
 export const modeAddTime = (): ModeAddTimeAction => ({
     type: MODES.ADD_TIME,
 });
@@ -70,6 +79,15 @@ export const modeEditName = (): ModeEditNameAction => ({
 export const modeDeletePerson = (): ModeDeletePersonAction => ({
     type: MODES.DELETE_PERSON,
 });
+
+export const changeColor = (id: number): ThunkAction<
+    Promise<void>,
+    RootState,
+    undefined,
+    ChangeColorAction
+> => async dispatch =>{
+    dispatch({type: CHANGE_COLOR, payload: {id: id}})
+}
 
 export const addPerson = (name: string): ThunkAction<
     Promise<void>,

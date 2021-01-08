@@ -3,7 +3,7 @@ import Person from './Person';
 import {selectPeople} from '../../redux/people';
 import { useDispatch, useSelector } from 'react-redux';
 import { MODES } from '../../actions/types';
-import { modeAddTime, modeDefault, modeDeletePerson, modeEditName, modeEditTime, modeMinusTime } from '../../actions';
+import { modeAddTime, modeChangeColor, modeDefault, modeDeletePerson, modeEditName, modeEditTime, modeMinusTime } from '../../actions';
 import Results from '../Results';
 import { useEffect, useState } from 'react';
 
@@ -29,6 +29,9 @@ const DispatchMode = (mode: string | undefined) => {
         case MODES.DELETE_PERSON:
             dispatch(modeDeletePerson());
             break;
+        case MODES.CHANGE_COLOR:
+            dispatch(modeChangeColor());
+            break;   
         default:
             dispatch(modeDefault());
             break;

@@ -8,6 +8,7 @@ export const EDIT_NAME = 'person/editname';
 export const ADD_TIME = 'person/addtime';
 export const MINUS_TIME = 'person/minustime';
 export const DELETE_PERSON = 'person/delete';
+export const CHANGE_COLOR = 'person/color';
 
 export const MODES = {
     DEFAULT: "default",
