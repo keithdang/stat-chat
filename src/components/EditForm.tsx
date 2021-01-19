@@ -2,6 +2,7 @@ import React from 'react';
 import { IconType } from 'react-icons/lib';
 import { useDispatch } from 'react-redux';
 import {ADD_PERSON, EDIT_NAME, MODES} from './../actions/types'
+import './Statchat.css'
 
 interface Props {
     id?: number
@@ -30,10 +31,10 @@ const EditForm: React.FC<Props> = ({mode, id, buttonFunc, icon}) => {
             input.value = "";
           }
         }}
-        style={{marginBottom:10}}
+        className="editform"
         >
-            <button style={{marginRight:5, paddingTop:5}}>{icon}</button>
-            <input style={{paddingTop:5}} ref={(node) => (input = node)}/>
+            <button>{icon}</button>
+            <input ref={(node) => (input = node)}/>
         </form>
     )
 }

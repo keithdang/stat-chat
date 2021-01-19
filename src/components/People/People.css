@@ -1,0 +1,25 @@
+.people-list {
+  display: flex;
+}
+
+.people-list div ul {
+  list-style-type: none;
+  padding: 0px;
+}
+
+.person {
+  display: flex;
+}
+
+.speaking {
+  min-width: 70px;
+  font-weight: bold;
+}
+
+.not-speaking {
+  min-width: 70px;
+}
+
+.buttonIcon {
+  height: 2.2em;
+}

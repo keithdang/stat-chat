@@ -1,11 +1,10 @@
-import {Person as PersonInt} from '../../interfaces/Person'
 import Person from './Person';
 import {selectPeople} from '../../redux/people';
 import { useDispatch, useSelector } from 'react-redux';
 import { MODES } from '../../actions/types';
 import { modeAddTime, modeChangeColor, modeDefault, modeDeletePerson, modeEditName, modeEditTime, modeMinusTime } from '../../actions';
 import Results from '../Results';
-import { useEffect, useState } from 'react';
+import './People.css';
 
 interface Props {
     mode?: string
@@ -44,10 +43,10 @@ const PeopleList: React.FC<Props>= ({mode}) => {
     
     const people = useSelector(selectPeople);
     return (
-        <div style={{display:'flex'}}>
+        <div className="people-list">
             <div>
                 <h4>{mode || 'Names'}</h4>
-                <ul style={{listStyleType:'none', padding: 0}}>
+                <ul>
                     {people.map((person)=>(
                         <Person person={person}/>
                     ))}

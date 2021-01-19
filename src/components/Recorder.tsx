@@ -1,11 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { start,startTime,stop } from '../actions';
+import { startTime } from '../actions';
 import { MODES } from '../actions/types';
-import { addZero, convertToSecondsFromDateStarted } from '../lib/utils';
+import { convertToSecondsFromDateStarted } from '../lib/utils';
 import {selectModeState} from './../redux/mode';
 import TimeDisplay from './TimeDisplay';
 import {Person} from '../interfaces/Person'
+import './Statchat.css';
 
 type RecPerson = Omit<Person, "name" | "color">
 
@@ -34,7 +35,7 @@ const Recorder: React.FC<RecPerson>  = ({id, dateStarted, isSpeaking, time}) => 
       }, []);
 
     return (
-        <div style={{display:'flex', marginBottom:10, marginRight:10}} >
+        <div className="recorder">
             {mode===MODES.DEFAULT && 
             <button onClick={handleClick}>
                 {isSpeaking ? 'Stop' : 'Start'}

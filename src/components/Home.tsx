@@ -4,12 +4,14 @@ import { ADD_PERSON } from "../actions/types"
 import EditForm from "./EditForm"
 import PeopleList from "./People/PeopleList"
 import logo from './App/logo.svg';
+import './Statchat.css';
+
 function Home(){
     return(
         <div>
-            <div style={{display:'inline-flex'}}>
+            <div className="home">
                 <div>
-                    <h3 style={{margin: 20}}>Stat Chat</h3>
+                    <h3>Stat Chat</h3>
                     <EditForm mode={ADD_PERSON} buttonFunc={addPerson} icon={'Add Name'}/>
                 </div>   
                 <img src={logo} className="App-logo" alt="logo" />   

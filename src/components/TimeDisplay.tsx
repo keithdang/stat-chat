@@ -1,5 +1,6 @@
 import React from 'react'
 import { addZero } from '../lib/utils';
+import './Statchat.css';
 
 interface Props {
     seconds: number
@@ -13,7 +14,7 @@ const TimeDisplay: React.FC<Props> = ({seconds}) => {
     seconds -= minutes * 60;
 
     return (
-        <div style={{marginLeft:10}}>
+        <div className="time-display">
             {addZero(hours)}:{addZero(minutes)}:{addZero(seconds)}
         </div>
     )
