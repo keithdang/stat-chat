@@ -6,3 +6,7 @@
 
 - Typescript, React, Redux <br />
 - React Chart Js to display data <br />
+
+## Demo
+
+https://youtu.be/ZN3g0wVLlzM
